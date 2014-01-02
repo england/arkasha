@@ -1,4 +1,18 @@
 language: ruby
+
 rvm:
   - "1.9.3"
+
 script: bundle exec rspec spec
+
+env:
+  - DB=sqlite   AR=3.2.15
+  - DB=mysql    AR=3.2.15
+  - DB=postgres AR=3.2.15
+  - DB=sqlite   AR=4.0.1
+  - DB=mysql    AR=4.0.1
+  - DB=postgres AR=4.0.1
+
+before_script:
+  - mysql -e 'create database arkasha;'
+  - psql -c 'create database arkasha;' -U postgres
